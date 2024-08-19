@@ -22,7 +22,7 @@ const HostDetailPage = async ({params}:{params:{id:string}}) =>{
                   {host.name}
                 </h1>
                 {userid!=params.id&&(
-                    <ContactButton/>
+                    <ContactButton userId={userid} hostId={params.id}/>
                 )}
 
               </div>
