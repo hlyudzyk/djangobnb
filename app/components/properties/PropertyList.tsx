@@ -3,6 +3,9 @@
 import PropertyItem from "@/app/components/properties/PropertyItem";
 import {useEffect, useState} from "react";
 import apiService from "@/app/services/apiServices";
+import useSearchModal from "@/app/hooks/useSearchModal";
+import {useParams} from "next/navigation";
+
 export type PropertyType = {
   id: string;
   title: string;
@@ -19,6 +22,8 @@ interface PropertyListProps{
 
 const PropertyList:React.FC<PropertyListProps> = ({host_id, favorites}) => {
   const [properties,setProperties] = useState<PropertyType[]>([]);
+  const searchModal = useSearchModal();
+  const params = useParams();
 
   const markFavorite = (id:string,is_favorite:boolean)=> {
     const tmpProperties = properties.map((property:PropertyType)=>{
@@ -34,13 +39,15 @@ const PropertyList:React.FC<PropertyListProps> = ({host_id, favorites}) => {
     setProperties(tmpProperties);
   }
 
-  const getProperties = async () =>{
+  const getProperties = async ()  =>{
     let url = '/api/properties/';
 
     if(host_id){
       url += `?host_id=${host_id}`;
     } else if(favorites){
       url += `?is_favorites=true`;
+    } else {
+      url += `?${searchModal.getQueryString()}`
     }
 
     const tmpProperties = await apiService.get(url)
@@ -55,15 +62,26 @@ const PropertyList:React.FC<PropertyListProps> = ({host_id, favorites}) => {
 
   useEffect(()=>{
       getProperties();
-  },[])
+      console.log("Fetched agaim")
+  },[searchModal.query,params])
 
   return(<>
-    {properties.map((property)=>{
-      return(
-          <PropertyItem key={property.id} property={property}
-                        markFavorite={(is_favorite:any)=>markFavorite(property.id,is_favorite)}/>
-      )
-    })}
+
+    {properties.length>0?
+        properties.map((property)=>{
+          return(
+              <PropertyItem key={property.id} property={property}
+                            markFavorite={(is_favorite:any)=>markFavorite(property.id,is_favorite)}/>
+          )
+        })
+        :
+        <div>
+          <h1 className="font-semibold">No exact matches :(</h1>
+          <h2>
+            Unfortunately, we couldn't find properties by given parameters...
+          </h2>
+        </div>
+    }
   </>)
 }
 export default PropertyList;

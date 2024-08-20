@@ -6,6 +6,8 @@ import Modal from "@/app/components/modals/Modal";
 import LoginModal from "@/app/components/modals/LoginModal";
 import SignupModal from "@/app/components/modals/SignupModal";
 import AddPropertyModal from "@/app/components/modals/AddPropertyModal";
+import SearchModal from "@/app/components/modals/SearchModal";
+import Footer from "@/app/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +37,9 @@ export default function RootLayout({
 
       <LoginModal/>
       <SignupModal/>
+      <SearchModal/>
       <AddPropertyModal/>
+      <Footer/>
       </body>
     </html>
   );
