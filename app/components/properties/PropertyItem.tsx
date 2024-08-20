@@ -3,6 +3,7 @@ import {PropertyType} from "@/app/components/properties/PropertyList";
 import {useRouter} from "next/navigation";
 import MarkFavoriteButton from "@/app/components/MarkFavoriteButton";
 import {is} from "date-fns/locale";
+import StarRating from "@/app/components/forms/StarRating";
 
 interface PropertyProps {
   property: PropertyType;

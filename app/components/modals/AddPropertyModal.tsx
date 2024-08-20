@@ -7,12 +7,10 @@ import LoginModal from "@/app/components/modals/LoginModal";
 import usePropertyModal from "@/app/hooks/useAddPropertyModal";
 import CustomButton from "@/app/components/forms/CustomButton";
 import {ChangeEvent, useState} from "react";
-import Categories from "@/app/components/addproperty/Categories";
 import SelectCountry, {SelectCountryValue} from "@/app/components/forms/SelectCountry";
 import apiService from "@/app/services/apiServices";
 import {useRouter} from "next/navigation";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+import Categories, {CategoryType} from "@/app/components/categories/Categories";
 
 const AddPropertyModal = () =>{
   const [currentStep,setCurrentStep] = useState(1);
@@ -34,6 +32,10 @@ const AddPropertyModal = () =>{
   const setCategory = (category:string) => {
     setDataCategory(category)
   }
+
+  const handleCategorySelect = (category: CategoryType) => {
+    setCategory(category.id);
+  };
 
   const setImage = (event:ChangeEvent<HTMLInputElement>) => {
     if(event.target.files&&event.target.files.length>0){
@@ -77,8 +79,7 @@ const AddPropertyModal = () =>{
       <>
         <h2 className="mb-6 text-2xl">Choose category</h2>
         <Categories
-            dataCategory={dataCategory}
-            setCategory={(category) => setCategory(category)}
+            onCategorySelect={handleCategorySelect}
         />
         <CustomButton label="Next" onClick={() => setCurrentStep(2)} />
       </>

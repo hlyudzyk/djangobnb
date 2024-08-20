@@ -1,67 +1,59 @@
 'use client'
 
-import Image from "next/image";
 import useSearchModal, {SearchQuery} from "@/app/hooks/useSearchModal";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Category from "@/app/components/categories/Category";
+import apiService from "@/app/services/apiServices";
 
+export type CategoryType = {
+  id:string;
+  name: string;
+  slug: string;
+  image_url: string;
+};
 
-const Categories = () => {
-  const searchModal = useSearchModal();
-  const [category,setCategory] = useState('')
-
-  const _setCategory = (_category:string) =>{
-    setCategory(_category);
-    searchModal.setQuery({...searchModal.query,category:_category});
-  }
-
-  return(
-      <div className="pt-3 cursor-pointer pb-6 flex items-center space-x-12">
-
-        <div className={`pb-4 flex flex-col items-center space-y-2 border-b-2
-             ${category==='beach'?'border-gray-800':'border-white'}
-             opacity-60 hover:opacity-100 hover:border-gray-200`}
-             onClick={()=>{_setCategory("beach")}}  >
-          <Image src="/beachfront.png" alt="Beach - category"
-                 width={20} height={20}/>
-          <span className="text-xs">
-            Beachfront
-          </span>
-        </div>
-
-        <div className="pb-4 flex flex-col items-center space-y-2 border-b-2
-         border-white opacity-60  hover:opacity-100 hover:border-gray-200"
-             onClick={()=>{_setCategory("pools")}}>
-          <Image src="/pools.png" alt="Amazing Pools - category"
-                 width={20} height={20}/>
-          <span className="text-xs">
-            Amazing Pools
-          </span>
-        </div>
-
-
-        <div className={`pb-4 flex flex-col items-center space-y-2 border-b-2
-             ${category==='tiny_homes'?'border-gray-800':'border-white'}
-             opacity-60 hover:opacity-100 hover:border-gray-200`}
-             onClick={()=>{_setCategory("tiny_homes")}}>
-          <Image src="/tinyhomes.png" alt="Tiny Homes - category"
-                 width={20} height={20}/>
-          <span className="text-xs">
-            Tiny Homes
-          </span>
-        </div>
-
-        <div className="pb-4 flex flex-col items-center space-y-2 border-b-2
-         border-white opacity-60 hover:opacity-100 hover:border-gray-200"
-             onClick={()=>{_setCategory("cabins")}}>
-          <Image src="/cabins.png" alt="Cabins - category"
-                 width={20} height={20}/>
-          <span className="text-xs">
-            Cabins
-          </span>
-        </div>
-      </div>
-
-  )
+interface CategoriesProps {
+  onCategorySelect?: (category: CategoryType) => void; // Callback prop to notify parent
 }
+
+const Categories: React.FC<CategoriesProps> = ({ onCategorySelect }) => {
+  const searchModal = useSearchModal();
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType|null>();
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+
+  const _setCategory = (_category: CategoryType) => {
+    setSelectedCategory(_category);
+    searchModal.setQuery({ ...searchModal.query, category: _category.slug });
+
+    if (onCategorySelect) {
+      onCategorySelect(_category);
+    }
+  };
+
+  const getCategories = async () => {
+    const categories: CategoryType[] = await apiService.get('/api/properties/categories/');
+    setCategories(categories);
+    _setCategory(categories[0])
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  return (
+      <div className="pt-3 pb-6 flex items-center space-x-12">
+
+        {categories.map((category: CategoryType) => (
+            <Category
+                key={category.id}
+                isSelected={selectedCategory === category}
+                imageUrl={category.image_url}
+                title={category.name}
+                onClick={() => _setCategory(category)}
+            />
+        ))}
+      </div>
+  );
+};
 
 export default Categories;
