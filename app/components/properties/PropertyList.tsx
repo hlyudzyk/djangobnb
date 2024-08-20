@@ -4,7 +4,7 @@ import PropertyItem from "@/app/components/properties/PropertyItem";
 import {useEffect, useState} from "react";
 import apiService from "@/app/services/apiServices";
 import useSearchModal from "@/app/hooks/useSearchModal";
-import {useParams} from "next/navigation";
+import Link from "next/link";
 
 export type PropertyType = {
   id: string;
@@ -23,7 +23,6 @@ interface PropertyListProps{
 const PropertyList:React.FC<PropertyListProps> = ({host_id, favorites}) => {
   const [properties,setProperties] = useState<PropertyType[]>([]);
   const searchModal = useSearchModal();
-  const params = useParams();
 
   const markFavorite = (id:string,is_favorite:boolean)=> {
     const tmpProperties = properties.map((property:PropertyType)=>{
@@ -62,10 +61,10 @@ const PropertyList:React.FC<PropertyListProps> = ({host_id, favorites}) => {
 
   useEffect(()=>{
       getProperties();
-      console.log("Fetched agaim")
-  },[searchModal.query,params])
+      console.log("Fetched properties")
+  },[searchModal.query])
 
-  return(<>
+  return(<div className="min-h-[500px]">
 
     {properties.length>0?
         properties.map((property)=>{
@@ -80,8 +79,10 @@ const PropertyList:React.FC<PropertyListProps> = ({host_id, favorites}) => {
           <h2>
             Unfortunately, we couldn't find properties by given parameters...
           </h2>
+          <p className="pt-5 text-blue-400 hover:text-blue-200 cursor-pointer" onClick={()=>searchModal.open('location')} >Try again with other filters</p>
+
         </div>
     }
-  </>)
+  </div>)
 }
 export default PropertyList;
