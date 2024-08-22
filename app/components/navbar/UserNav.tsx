@@ -57,6 +57,12 @@ const UserNav:React.FC<UserNavProps> = ({userId}) =>{
                     }
                     }/>
 
+                    <MenuLink label="My account" onClick={()=> {
+                      setIsOpen(false);
+                      router.push(`/account`);
+                    }
+                    }/>
+
                     <LogoutButton/>
                   </>
                   ):(

@@ -3,6 +3,7 @@ import ContactButton from "@/app/components/ContactButton";
 import PropertyList from "@/app/components/properties/PropertyList";
 import apiService from "@/app/services/apiServices";
 import {getUserId} from "@/app/lib/actions";
+import EditAccountButton from "@/app/components/EditAccountButton";
 
 const HostDetailPage = async ({params}:{params:{id:string}}) =>{
   const host = await apiService.get(`/api/auth/${params.id}/`)
@@ -18,12 +19,18 @@ const HostDetailPage = async ({params}:{params:{id:string}}) =>{
                        width={200}
                        height={200}
                        className="rounded-full"/>
-                <h1 className="mt-6 text-2xl">
+                <h2 className="mt-6 text-2xl">
                   {host.name}
-                </h1>
-                {userid!=params.id&&(
-                    <ContactButton userId={userid} hostId={params.id}/>
-                )}
+                </h2>
+                {
+                  userid==params.id?
+                    (
+                        <EditAccountButton/>
+                    ):
+                    (
+                      <ContactButton userId={userid} hostId={params.id}/>
+                    )
+                }
 
               </div>
           </aside>
