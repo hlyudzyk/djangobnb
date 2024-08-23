@@ -1,4 +1,4 @@
-'use client'
+ 'use client'
 
 import useAddPropertyModal from "@/app/hooks/useAddPropertyModal";
 import useLoginModal from "@/app/hooks/useLoginModal";

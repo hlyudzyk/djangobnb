@@ -1,3 +1,5 @@
+'use client'
+
 interface CustomButtonProps{
   label:string;
   className?:string;

@@ -64,7 +64,7 @@ const PropertyList:React.FC<PropertyListProps> = ({host_id, favorites}) => {
       console.log("Fetched properties")
   },[searchModal.query])
 
-  return(<div className="min-h-[500px]">
+  return(<>
 
     {properties.length>0?
         properties.map((property)=>{
@@ -83,6 +83,8 @@ const PropertyList:React.FC<PropertyListProps> = ({host_id, favorites}) => {
 
         </div>
     }
-  </div>)
+  </>
+    )
 }
+
 export default PropertyList;
