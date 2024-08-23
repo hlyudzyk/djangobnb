@@ -21,11 +21,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const content =
-    (
-        <p>Yo</p>
-    )
-
   return (
     <html lang="en">
       <body className={inter.className}>
