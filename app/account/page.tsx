@@ -1,11 +1,12 @@
 'use client'
 
-import {useState, useEffect, ChangeEvent} from 'react';
+import {useState, useEffect, ChangeEvent, Suspense} from 'react';
 import Image from 'next/image';
 import {getUserId} from "@/app/lib/actions";
 import apiService from "@/app/services/apiServices";
 import {UserType} from "@/app/inbox/page";
 import PropertyList from "@/app/components/properties/PropertyList";
+import {AccountPageSkeleton, PropertyListSkeleton} from "@/app/components/skeletons";
 
 
 const AccountPage = () => {
@@ -46,6 +47,7 @@ const AccountPage = () => {
 
   return user ? (
       <main className="max-w-[1500px] mx-auto px-6 pb-6">
+
         <div className="flex flex-col items-center p-6 rounded-xl border-gray-300 shadow-xl">
           <div className="lg:w-[50%] sm:w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
@@ -112,12 +114,14 @@ const AccountPage = () => {
           </h1>
 
           <div className="mt-4 grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-            <PropertyList host_id={user.id}/>
+            <Suspense fallback={<PropertyListSkeleton/>}>
+              <PropertyList host_id={user.id}/>
+            </Suspense>
           </div>
         </div>
       </main>
   ) : (
-      <p>Loading...</p>
+      <AccountPageSkeleton/>
   );
 };
 
