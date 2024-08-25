@@ -28,8 +28,8 @@ const ReservationsPage = async () =>{
                     <p className="mb-2"><strong>Number of nights:</strong> {reservation.number_of_nights}</p>
                     <p className="mb-2"><strong>Total price:</strong> ${reservation.total_price}</p>
 
-                    <Link className="mt-6 inline-block cursor-pointer py-4 px-6 bg-airbnb text-white
-              rounded-xl hover:bg-airbnb-dark"
+                    <Link className="mt-6 inline-block cursor-pointer py-4 px-6 bg-lightbase text-white
+              rounded-xl hover:bg-lightbase-hover"
                     href={`properties/${reservation.property.id}`}>
                       View property
                     </Link>

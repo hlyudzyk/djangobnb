@@ -21,7 +21,7 @@ const MakeFavoriteButtonProps:React.FC<MakeFavoriteButtonProps> =  ({
 
   return(
       <div onClick={toggleMarkFavorite}
-           className={`absolute top-2 right-2 ${is_favorite ? 'text-airbnb' : 'text-white'} hover:text-airbnb`}>
+           className={`absolute top-2 right-2 ${is_favorite ? 'text-lightbase' : 'text-white'} hover:text-lightbase`}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
              stroke="currentColor" className="size-6">
           <path strokeLinecap="round" strokeLinejoin="round"

@@ -10,7 +10,7 @@ const AddPropertyButton:React.FC<AddPropertyButtonProps> = ({userid}) =>{
   const loginModal = useLoginModal();
   const addPropertyModal = useAddPropertyModal();
 
-  const airBnbYourHome = () => {
+  const lightbaseYourHome = () => {
       userid?addPropertyModal.open():loginModal.open();
 
 
@@ -18,7 +18,7 @@ const AddPropertyButton:React.FC<AddPropertyButtonProps> = ({userid}) =>{
 
    return (
        <div className="p-2 cursor-pointer text-sm font-semibold rounded-full hover:bg-gray-200"
-          onClick={airBnbYourHome}>
+          onClick={lightbaseYourHome}>
           Djangobnb your home
        </div>
    )

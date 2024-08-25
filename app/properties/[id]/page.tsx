@@ -7,7 +7,6 @@ import Link from "next/link";
 import StarRating from "@/app/components/forms/StarRating";
 
 
-
 const PropertyDetailPage = async ({params}:{params:{id:string}}) =>{
 
   const property = await apiService.get(`/api/properties/${params.id}/`);
@@ -43,7 +42,11 @@ const PropertyDetailPage = async ({params}:{params:{id:string}}) =>{
                    height={50}
                    className="rounded-full"/>
 
-            <p><strong>{property.host.name}</strong> is your host</p>
+            {property.host.id==userid?(
+              <p><strong>You</strong> are the host</p>):
+                (<p>
+                  <strong>{property.host.name}</strong> is your host</p>)
+            }
           </Link>
 
           <hr/>
@@ -51,8 +54,7 @@ const PropertyDetailPage = async ({params}:{params:{id:string}}) =>{
             {property.description}
           </p>
         </div>
-
-        <ReservationSideBar property={property} userid={userid}/>
+            <ReservationSideBar property={property} userid={userid}/>
       </div>
     </main>
   )
