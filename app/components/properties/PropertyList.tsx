@@ -45,6 +45,7 @@ const PropertyList: React.FC<PropertyListProps> = ({ host_id, favorites }) => {
       url += `?${searchModal.getQueryString()}`;
     }
     const tmpProperties = await apiService.get(url);
+
     setProperties(
       tmpProperties.data.map((property: PropertyType) => {
         property.is_favorite = tmpProperties.favorites.includes(property.id);

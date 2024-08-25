@@ -9,6 +9,7 @@ import {differenceInDays, eachDayOfInterval, format} from "date-fns";
 import DatePicker from "@/app/components/forms/Calendar";
 import {da} from "date-fns/locale";
 import {userInfo} from "node:os";
+import EditPropertyButton from "@/app/components/EditPropertyButton";
 
 const initialDateRange = {
     startDate:new Date(),
@@ -114,7 +115,11 @@ const ReservationSideBar:React.FC<ReservationSideBarProps> = ({property,userid})
     },[dateRange])
 
     return(<aside className="mt-6 p-6 col-span-2 rounded-xl border border-gray-300 shadow-xl">
-        <h2 className="mb-5 text-2xl">${property.price_per_night} per night</h2>
+            {property.host.id==userid?
+                <div className="h-[40px]">
+                    <EditPropertyButton/>
+                </div>:
+       <> <h2 className="mb-5 text-2xl">${property.price_per_night} per night</h2>
 
         <DatePicker value={dateRange}
                     bookedDates={bookedDates}
@@ -131,8 +136,8 @@ const ReservationSideBar:React.FC<ReservationSideBarProps> = ({property,userid})
         </div>
 
 
-        <div className="w-full mb-6 py-6 text-center text-white bg-airbnb rounded-xl
-        hover:bg-airbnb-dark"
+        <div className="w-full mb-6 py-6 text-center text-white bg-lightbase rounded-xl
+        hover:bg-lightbase-hover"
         onClick={performBooking}>
             Book
         </div>
@@ -151,6 +156,8 @@ const ReservationSideBar:React.FC<ReservationSideBarProps> = ({property,userid})
             <p>Total</p>
             <p>${totalPrice}</p>
         </div>
+       </>
+            }
     </aside>
 );
 }

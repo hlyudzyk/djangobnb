@@ -191,7 +191,7 @@ const AddPropertyModal = () =>{
         {
           errors.map((error,index)=>{
             return (
-                <div key={`error_${index}`} className="p-5 mb-4 bg-airbnb text-white rounded-xl opacity-80">
+                <div key={`error_${index}`} className="p-5 mb-4 bg-lightbase text-white rounded-xl opacity-80">
                   {error}
                 </div>
             )

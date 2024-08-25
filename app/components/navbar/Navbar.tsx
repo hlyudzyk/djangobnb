@@ -13,12 +13,17 @@ const Navbar = async () =>{
         <div className="max-w-[1500px] mx-auto px-6">
             <div className="flex justify-between items-center">
                 <Link href="/">
+                    <div className="flex flex-row items-center">
+
                     <Image
                         src="/logo.png"
                         alt="Djangoabnb logo"
-                        width={60}
-                        height={60}
+                        width={30}
+                        height={30}
                     />
+                        <h2 className="text-xl ml-3 text-blue-400 font-semibold">Properties</h2>
+                    </div>
+
                 </Link>
 
                 <div className="flex space-x-6">

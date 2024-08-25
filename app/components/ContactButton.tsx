@@ -25,8 +25,8 @@ const ContactButton:React.FC<ContactButtonProps> = ({userId,hostId}) => {
     }
   }
     return(
-        <div className="cursor-pointer mt-6 py-4 px-6 bg-airbnb text-white rounded-xl
-        hover:bg-airbnb-dark transition"
+        <div className="cursor-pointer mt-6 py-4 px-6 bg-lightbase text-white rounded-xl
+        hover:bg-lightbase-hover transition"
               onClick={startConversation}>
             Contact
         </div>
