@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Property Management App - Frontend
 
-## Getting Started
+This repository contains the frontend part of a property management application built with Next.js. The application allows users to manage their properties, including updating profiles, listing properties, and favoriting properties.
 
-First, run the development server:
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- **User Authentication**: Secure login and registration for users.
+- **Profile Management**: Users can update their profiles, including their profile picture and description.
+- **Property Listings**: Users can view and manage their properties, including adding new properties and marking favorites.
+- **Responsive Design**: The app is designed to work seamlessly on both mobile and desktop devices.
+- **Skeleton UI**: Loading states with skeleton screens for a smooth user experience.
+- **Error Handling**: Informative error messages displayed for failed actions.
+
+## Installation
+
+To get started with this project, you will need to have Node.js installed on your machine.
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/hlyudzyk/djangobnb.git
+cd djangobnb
+```
+
+### Step 2: Install Dependencies
+
+```bash
+npm install
+```
+
+### Step 3: Configure Environment Variables
+
+Create a `.env.local` file in the root directory and add the necessary environment variables:
+
+```env
+NEXT_PUBLIC_API_URL=https://your-api-url.com
+NEXT_PUBLIC_SOME_KEY=your_key_here
+```
+
+### Step 4: Running the Application
+
+To run the application in development mode, use:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Step 5: Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To build the application for production, use:
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+The app will be available at `http://localhost:3000`.
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Profile Management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Viewing Profile:** Navigate to the `/account` page to view your profile.
+- **Updating Profile:** Change your profile picture, name, and description. The form state tracks the submission status and shows success or error messages.
 
-## Deploy on Vercel
+### Property Management
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Viewing Properties:** Properties can be viewed on the main dashboard.
+- **Marking Favorites:** Mark properties as favorites to keep track of them.
+- **Responsive Design:** The app adjusts to different screen sizes, making it easy to use on mobile and desktop.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+
+- **Next.js**: React framework for server-rendered applications.
+- **TypeScript**: Type safety and modern JavaScript features.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **React Hooks**: For managing state and side effects.
+
+## Contributing
+
+Contributions are welcome! If you have suggestions or bug reports, please open an issue or submit a pull request.
+
+### Steps to Contribute
+
+1. Fork this repository.
+2. Create a new branch: `git checkout -b feature-branch-name`.
+3. Make your changes and commit them: `git commit -m 'Add new feature'`.
+4. Push to the branch: `git push origin feature-branch-name`.
+5. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+```
