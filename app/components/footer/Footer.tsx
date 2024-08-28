@@ -30,7 +30,7 @@ const Footer = () => {
   const [category, setCategory] = useState<string>('Popular');
 
   return (
-      <div className="mt-20 w-full bg-footer flex items-center justify-center">
+      <div className="mt-52 w-full bg-footer flex items-center justify-center">
         <div className="w-[90%] h-[80%] pt-10">
           <h2 className="text-xl text-gray-800 font-semibold mb-5">Inspiration for future gateways</h2>
 
@@ -72,7 +72,7 @@ const Footer = () => {
 
             <div className="flex flex-col gap-y-3">
               <h1 className="font-semibold">Hosting</h1>
-              <p className="cursor-pointer">Djangobnb your home</p>
+              <p className="cursor-pointer">Properties your home</p>
               <p className="cursor-pointer">AirCover for Hosts</p>
               <p className="cursor-pointer">Hosting resources</p>
               <p className="cursor-pointer">Community forum</p>
@@ -91,7 +91,7 @@ const Footer = () => {
 
           <div className="flex flex-col sm:flex-row justify-between gap-y-5 sm:gap-x-20 py-5">
             <div className="flex flex-col sm:flex-row justify-between gap-x-5">
-              <p className="cursor-pointer">© 2024 Djangobnb, Inc.</p>
+              <p className="cursor-pointer">© 2024 Properties, Inc.</p>
               <p className="cursor-pointer">Terms</p>
               <p className="cursor-pointer">Sitemap</p>
               <p className="cursor-pointer">Privacy</p>

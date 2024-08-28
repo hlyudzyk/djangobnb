@@ -10,6 +10,8 @@ import DatePicker from "@/app/components/forms/Calendar";
 import {da} from "date-fns/locale";
 import {userInfo} from "node:os";
 import EditPropertyButton from "@/app/components/EditPropertyButton";
+import useBookModal from "@/app/hooks/useBookModal";
+import BookModal from "@/app/components/modals/BookModal";
 
 const initialDateRange = {
     startDate:new Date(),
@@ -38,6 +40,8 @@ const ReservationSideBar:React.FC<ReservationSideBarProps> = ({property,userid})
     const [guests,setGuests] = useState('1');
     const guestsRange = Array.from({length:property.guests},(_,index)=>index+1)
     const [bookedDates,setBookedDates] = useState<Date[]>([]);
+    const bookModal = useBookModal();
+
 
     const performBooking = async() =>{
         if(userid){
@@ -53,6 +57,7 @@ const ReservationSideBar:React.FC<ReservationSideBarProps> = ({property,userid})
 
                 if(response.success){
                     console.log("Booked")
+                    bookModal.open();
 
                 }
                 else {
@@ -115,6 +120,7 @@ const ReservationSideBar:React.FC<ReservationSideBarProps> = ({property,userid})
     },[dateRange])
 
     return(<aside className="mt-6 p-6 col-span-2 rounded-xl border border-gray-300 shadow-xl">
+            <BookModal/>
             {property.host.id==userid?
                 <div className="h-[40px]">
                     <EditPropertyButton/>

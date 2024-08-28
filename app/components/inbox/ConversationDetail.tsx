@@ -88,7 +88,7 @@ const ConversationDetail:React.FC<ConversationDetailProps> = ({conversation,toke
             return(
                 <div key={index}
                      className={`w-[80%] py-4 px-6 rounded-xl 
-                     ${message.sent_by.name === myUser?.name
+                     ${message.sent_by.id === myUser?.id
                          ? 'ml-[20%] bg-blue-200'
                          : 'bg-gray-200'
                      }`}>
@@ -105,7 +105,7 @@ const ConversationDetail:React.FC<ConversationDetailProps> = ({conversation,toke
             return(
                 <div key={index}
                      className={`w-[80%] py-4 px-6 rounded-xl 
-                     ${message.sent_by.name === myUser?.name
+                     ${message.sent_by.id === myUser?.id
                          ? 'ml-[20%] bg-blue-200'
                          : 'bg-gray-200'
                      }`}>
