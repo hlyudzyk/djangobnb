@@ -12,7 +12,7 @@ import Footer from "@/app/components/footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Djangobnb",
+  title: "Properties",
   description: "App to book hotels & apartments",
 };
 

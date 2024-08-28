@@ -1,3 +1,4 @@
+
 import Image from 'next/image'
 import ReservationSideBar from "@/app/components/properties/ReservationSideBar";
 import apiService from "@/app/services/apiServices";
@@ -5,11 +6,14 @@ import {resolveAppleWebApp} from "next/dist/lib/metadata/resolvers/resolve-basic
 import {getUserId} from "@/app/lib/actions";
 import Link from "next/link";
 import StarRating from "@/app/components/forms/StarRating";
+import BookModal from "@/app/components/modals/BookModal";
+import useBookModal from "@/app/hooks/useBookModal";
+import {notFound} from "next/navigation";
 
 
 const PropertyDetailPage = async ({params}:{params:{id:string}}) =>{
 
-  const property = await apiService.get(`/api/properties/${params.id}/`);
+  const property = await apiService.get(`/api/properties/${params.id}/`).catch((e)=>{notFound();});
   const userid = await getUserId();
 
   return(

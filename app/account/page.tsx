@@ -9,6 +9,8 @@ import PropertyList from "@/app/components/properties/PropertyList";
 import {AccountPageSkeleton, PropertyListSkeleton} from "@/app/components/skeletons";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import {useRouter} from "next/navigation";
+
+
 const AccountPage = () => {
   const [user, setUser] = useState<UserType>();
   const [name, setName] = useState('');
