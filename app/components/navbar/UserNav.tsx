@@ -56,7 +56,12 @@ const UserNav:React.FC<UserNavProps> = ({userId}) =>{
                       setIsOpen(false);
                       router.push(`/account`);
                     }
+
                     }/>
+                      <MenuLink label="About" onClick={()=> {
+                          setIsOpen(false);
+                          router.push(`/about`);
+                    }}  />
 
                     <LogoutButton/>
                   </>
@@ -74,7 +79,12 @@ const UserNav:React.FC<UserNavProps> = ({userId}) =>{
                       setIsOpen(false);
                       signupModal.open();
                     }}/>
+                  <MenuLink label="About" onClick={()=> {
+                      setIsOpen(false);
+                      router.push(`/about`);
+                    }}  />
                   </>
+
             )
         }
             </div>

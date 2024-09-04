@@ -24,6 +24,7 @@ const PropertyList: React.FC<PropertyListProps> = ({ host_id, favorites }) => {
   const [loading, setLoading] = useState(true);
   const searchModal = useSearchModal();
 
+
   const markFavorite = (id: string, is_favorite: boolean) => {
     const tmpProperties = properties.map((property: PropertyType) => {
       if (property.id == id) {
